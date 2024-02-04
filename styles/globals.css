@@ -87,12 +87,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  
 }
 
 a {
@@ -103,5 +98,103 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+.login_box {
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #9ac7f4;
+}
+
+.login_view {
+  width:100vw;
+  height: 60vh;
+  margin: 20vh 0vh; 
+  background-color: white;
+  padding: 2vw;
+}
+
+.login_button {
+  width: 100%;
+  padding: 1vh;
+  background-color: #9ac7f4;
+  border: none;
+}
+
+.margin_top {
+  margin-top: 2vh;
+}
+
+.background_color{
+  background-color: white;
+}
+
+
+
+
+@media (min-width: 768px) {
+  .login_box {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #6699CC;
+  }
+
+  .login_view {
+    width: 40vw;
+    height: 85vh;
+    margin: 7.5vh auto;
+    background-color: white;
+    padding: 2vw;
+  }
+
+  .login_button {
+    width: 100%;
+    padding: 1vh;
+    background-color: #9ac7f4;
+    border: none;
+  }
+
+  .margin_top {
+    margin-top: 0.5vh;
+  }
+
+  .background_color {
+    background-color: white;
+  }
+
+  label {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="checkbox"],
+  input[type="password"] {
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  .dropzone {
+    border: 2px dashed #9ac7f4;
+    padding: 1em;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .dropzone img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1em;
+  }
+
+  .profile-picture-container {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1em;
   }
 }

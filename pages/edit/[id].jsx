@@ -1,37 +1,54 @@
-import { Inter } from "next/font/google";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Dropzone from 'react-dropzone';
 import DatePicker from 'react-datepicker';
 import CKEditor from 'react-ckeditor-component';
-import { GlobalContext } from "@/context/GlobalContext";
+import { GlobalContext } from '@/context/GlobalContext';
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Home() {
+const Edit = () => {
   const [name, setName] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [description, setDescription] = useState('sampson');
 
-  const { createUser } = useContext(GlobalContext)
+  const { editUser, getUserData } = useContext(GlobalContext);
+  const router = useRouter();
+  const { id } = router.query;
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        if (id) {
+          const userData = await getUserData(id);
+          setName(userData.name || '');
+          setProfilePicture(userData.profile_picture || '');
+          
+          // Check if userData.birthdate is a valid date string before creating a Date object
+          setBirthdate(userData.birthdate ? new Date(userData.birthdate) : '');
+
+          setIsActive(userData.active_status || false);
+          setDescription(userData.description || 'sampson');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [getUserData, id]);
 
   const handleDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
-  
+
     if (file) {
-      // Prepend the desired path to the filename
       const imagePath = `https://tasks.vitasoftsolutions.com/media/profile_pictures/${file.name}`;
-      
-      // Set the profilePicture state to the complete URL
       setProfilePicture(imagePath);
     }
   };
 
-
   const handleDateChange = (date) => {
     setBirthdate(date);
-    console.log(typeof date);
   };
 
   const handleDescriptionChange = (event) => {
@@ -40,31 +57,28 @@ export default function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Do something with the form data (e.g., send to the server)
 
     const year = birthdate.getFullYear();
-    const month = birthdate.getMonth() + 1; // Months are zero-based, so add 1
+    const month = birthdate.getMonth() + 1;
     const day = birthdate.getDate();
 
-// Format the date as "yyyy-MM-dd"
-const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+    const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
 
-
-    createUser({
-      name: name,
-      phone_number: "08086410438",
-      description: description,
+    editUser({
+      name,
+      phone_number: '08086410438',
+      profile_picture: null, // Update this as needed
+      description,
       birthdate: formattedDate,
       active_status: isActive,
-    });
+    }, id);
 
     console.log({
       name,
       formattedDate,
-      phone_number: "",
+      phone_number: '',
       active_status: isActive,
       description,
-    
     });
   };
 
@@ -72,7 +86,7 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
     <form onSubmit={handleSubmit} className="my-form">
       <div className="login_box">
         <div className="login_view">
-          <h3 className="">Create User</h3>
+          <h3 className="">Edit User</h3>
 
           <div className="margin_top">
             <label>Name</label>
@@ -134,3 +148,5 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
     </form>
   );
 };
+
+export default Edit;
