@@ -4,6 +4,8 @@ import Dropzone from 'react-dropzone';
 import DatePicker from 'react-datepicker';
 import CKEditor from 'react-ckeditor-component';
 import { GlobalContext } from "@/context/GlobalContext";
+import {ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -131,6 +133,14 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center" // Position the toast container at the bottom-center
+        autoClose={1500} // Close after 3 seconds (adjust as needed)
+        style={{
+          width: 'fit-content', // Adjust the width as needed
+          textAlign: 'center', // Center-align the container's content
+        }}
+      />
     </form>
   );
 };

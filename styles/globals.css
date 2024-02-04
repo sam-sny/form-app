@@ -128,6 +128,7 @@ a {
 .user-info-item {
   width: 50%;
   padding: 5px;
+  word-wrap: break-word;
 }
 
 .load-more-container {
@@ -225,7 +226,7 @@ input[type="password"] {
   .login_view {
     width: 40vw;
     height: auto;
-    margin: 7.5vh auto;
+    margin: 13.5vh auto;
     background-color: white;
     padding: 2vw;
   }

@@ -1,5 +1,7 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const GlobalContext = createContext({
   createUser: () => {},
@@ -44,6 +46,17 @@ const GlobalState = ({ children }) => {
   
       if (response.status === 201) {
         console.log('Create User Successful!');
+        toast.info('User Created Successful!', {
+          style: {
+            background: 'white', // Change the background color as needed
+            color: '#9ac7f4', // Change the text color as needed
+            borderRadius: '8px', // Rounded corners for the toast
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Add a subtle box shadow
+            padding: '12px 24px', // Adjust padding as needed
+            fontSize: '16px', // Adjust font size as needed
+            textAlign: 'center',
+          },
+        })
         history.push(`/edit/${result.id}`);
 
         // Handle success here, e.g., redirect to a success page
@@ -83,6 +96,17 @@ const GlobalState = ({ children }) => {
   
       if (response.status === 200) {
         console.log('Create User Successful!');
+        toast.info('User Edited Successful!', {
+          style: {
+            background: 'white', // Change the background color as needed
+            color: '#9ac7f4', // Change the text color as needed
+            borderRadius: '8px', // Rounded corners for the toast
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Add a subtle box shadow
+            padding: '12px 24px', // Adjust padding as needed
+            fontSize: '16px', // Adjust font size as needed
+            textAlign: 'center',
+          },
+        })
         history.push(`/list`);
         // Handle success here, e.g., redirect to a success page
       } else {

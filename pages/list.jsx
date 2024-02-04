@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '@/context/GlobalContext';
+import { useRouter } from 'next/router';
+
 
 const List = () => {
-  const { getUsersList, getUsersListPage, usersList } = useContext(GlobalContext);
+  const { getUsersList, getUsersListPage, deleteUser, usersList } = useContext(GlobalContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [dataFetched, setDataFetched] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const history = useRouter();
 
   useEffect(() => {
     if (!dataFetched) {
@@ -29,21 +32,27 @@ const List = () => {
     }
   };
 
+  const handleUserClick = (userId) => {
+    // Redirect to the edit page with the user's ID
+    history.push(`/edit/${userId}`);
+  };
+
   return (
     <div className="users-list-container">
       <h1>Users List</h1>
       <ul className="users-list">
         {usersList.map((user) => (
-          <li key={user.id} className="user-item">
-            <div className="user-info">
+          <li key={user.id} className="user-item" >
+            <div className="user-info" onClick={() => handleUserClick(user.id)}>
               <p className="user-info-item">Name: {user.name}</p>
-              <p className="user-info-item">Profile Picture: {user.profile_picture}</p>
-              <p className="user-info-item">Birth Date: {user.birthday}</p>
+              <p className="user-info-item">Description: {user.description}</p>
+              <p className="user-info-item">Birth Date: {user.birthdate}</p>
               <p className="user-info-item">Joining Date: {user.joining_date}</p>
               <p className="user-info-item">Phone Number: {user.phone_number}</p>
-              <p className="user-info-item">Description: {user.description}</p>
+              <p className="user-info-item">Profile Picture: {user.profile_picture}</p> 
             </div>
-          </li>
+            <button onClick={() => deleteUser(user.id)}>Delete</button>
+          </li>    
         ))}
       </ul>
       {showMore && (
