@@ -69,7 +69,6 @@ const Edit = () => {
     editUser({
       name,
       phone_number: '08086410438',
-      profile_picture: null, // Update this as needed
       description,
       birthdate: formattedDate,
       active_status: isActive,
