@@ -2,11 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Dropzone from 'react-dropzone';
 import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import CKEditor from 'react-ckeditor-component';
 import { GlobalContext } from '@/context/GlobalContext';
 
 const Edit = () => {
   const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(null);
   const [profilePicture, setProfilePicture] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [isActive, setIsActive] = useState(false);
@@ -66,7 +68,7 @@ const Edit = () => {
 
     editUser({
       name,
-      phone_number: '08086410438',
+      phone_number: "09877656",
       description,
       birthdate: formattedDate,
       active_status: isActive,
@@ -85,18 +87,7 @@ const Edit = () => {
     <form onSubmit={handleSubmit} className="my-form">
       <div className="login_box">
         <div className="login_view">
-          <h3 className="">Edit User</h3>
-
-          <div className="margin_top">
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-control background_color"
-              style={{ backgroundColor: 'white' }}
-            />
-          </div>
+          <h3 className="margin_bottom">Edit User</h3>
 
           <div className="margin_top">
             <label>Profile Picture</label>
@@ -117,8 +108,39 @@ const Edit = () => {
           </div>
 
           <div className="margin_top">
+            <label>Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="form-control background_color"
+              style={{ backgroundColor: 'white' }}
+            />
+          </div>
+
+          <div className="margin_top">
+            <label>Phone Number</label>
+            <input
+              type="number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              className="form-control background_color"
+              style={{ backgroundColor: 'white' }}
+            />
+          </div>
+
+          
+
+          <div className="margin_top">
             <label>Birthdate</label>
-            <DatePicker selected={birthdate} onChange={handleDateChange} dateFormat="yyyy-MM-dd" />
+            <div className="">
+            <DatePicker
+             selected={birthdate}
+             onChange={handleDateChange}
+             dateFormat="yyyy-MM-dd"
+              className="date-picker-input"
+            />
+          </div>
           </div>
 
           <div className="margin_top">
@@ -127,7 +149,7 @@ const Edit = () => {
               type="checkbox"
               checked={isActive}
               onChange={() => setIsActive(!isActive)}
-              className="form-control background_color"
+              className="form-control background_color margin_left"
               style={{ backgroundColor: 'white' }}
             />
           </div>

@@ -101,10 +101,16 @@ a {
   }
 }
 
+.wrapper{
+  background-color: #6699CC;
+  padding: 0vh;
+}
+
 .users-list-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  background-color: white;
 }
 
 .users-list {
@@ -154,13 +160,13 @@ a {
 .login_box {
   height: 100vh;
   overflow-y: auto;
-  background-color: #9ac7f4;
+  background-color: #6699CC;
 }
 
 .login_view {
   width:100vw;
   height: auto;
-  margin: 20vh 0vh; 
+  margin: 15vh 0vw; 
   background-color: white;
   padding: 2vw;
 }
@@ -168,13 +174,14 @@ a {
 .login_button {
   width: 100%;
   padding: 1vh;
-  background-color: #9ac7f4;
+  background-color: #6699CC;
   border: none;
 }
 
 .margin_top {
   margin-top: 2vh;
 }
+
 
 .background_color{
   background-color: white;
@@ -188,6 +195,7 @@ a {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="checkbox"],
 input[type="password"] {
   width: 100%;
@@ -200,12 +208,17 @@ input[type="password"] {
   padding: 1em;
   text-align: center;
   cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 35vw;
+  height: 15vh;
 }
 
 .dropzone img {
   max-width: 100%;
   height: auto;
   margin-top: 1em;
+  
 }
 
 .profile-picture-container {
@@ -213,6 +226,13 @@ input[type="password"] {
   height: auto;
   margin-top: 1em;
 }
+
+.red-delete-button {
+  color: white;
+  background-color: red;
+  width: 15.5vw;
+}
+
 
 
 @media (min-width: 768px) {
@@ -223,10 +243,15 @@ input[type="password"] {
     background-color: #6699CC;
   }
 
+  .wrapper{
+    background-color: #6699CC;
+    padding: 1.5vh;
+  }
+
   .login_view {
     width: 40vw;
     height: auto;
-    margin: 13.5vh auto;
+    margin: 5.0vh auto;
     background-color: white;
     padding: 2vw;
   }
@@ -234,12 +259,21 @@ input[type="password"] {
   .login_button {
     width: 100%;
     padding: 1vh;
-    background-color: #9ac7f4;
+    background-color: #6699CC;
     border: none;
   }
 
   .margin_top {
-    margin-top: 0.5vh;
+    margin-top: 1vh;
+  }
+
+  .margin_left {
+    margin-left: -40vh;
+  }
+
+  .margin_bottom {
+    margin-top: -2vh;
+    margin-bottom: 3.5vh;
   }
 
   .background_color {
@@ -266,6 +300,10 @@ input[type="password"] {
     padding: 1em;
     text-align: center;
     cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 10vw;
+    height: 20vh;
   }
 
   .dropzone img {
@@ -278,5 +316,11 @@ input[type="password"] {
     max-width: 100%;
     height: auto;
     margin-top: 1em;
+  }
+
+  .red-delete-button {
+    color: white;
+    background-color: red;
+    width: 10vw;
   }
 }

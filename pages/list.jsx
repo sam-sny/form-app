@@ -38,8 +38,9 @@ const List = () => {
   };
 
   return (
+    <div className="wrapper">
     <div className="users-list-container">
-      <h1>Users List</h1>
+      <h1 className='margin_bottom'>Users List</h1>
       <ul className="users-list">
         {usersList.map((user) => (
           <li key={user.id} className="user-item" >
@@ -51,7 +52,7 @@ const List = () => {
               <p className="user-info-item">Phone Number: {user.phone_number}</p>
               <p className="user-info-item">Profile Picture: {user.profile_picture}</p> 
             </div>
-            <button onClick={() => deleteUser(user.id)}>Delete</button>
+            <button onClick={() => deleteUser(user.id)} className='red-delete-button'>Delete</button>
           </li>    
         ))}
       </ul>
@@ -62,6 +63,7 @@ const List = () => {
           </button>
         </div>
       )}
+    </div>
     </div>
   );
 };

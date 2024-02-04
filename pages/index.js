@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import React, { useState, useContext } from "react";
 import Dropzone from 'react-dropzone';
 import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import CKEditor from 'react-ckeditor-component';
 import { GlobalContext } from "@/context/GlobalContext";
 import {ToastContainer } from 'react-toastify';
@@ -11,6 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
   const [birthdate, setBirthdate] = useState('');
   const [isActive, setIsActive] = useState(false);
@@ -54,7 +56,7 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
 
     createUser({
       name: name,
-      phone_number: "08086410438",
+      phone_number: "09877656",
       description: description,
       birthdate: formattedDate,
       active_status: isActive,
@@ -63,7 +65,7 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
     console.log({
       name,
       formattedDate,
-      phone_number: "",
+      phoneNumber,
       active_status: isActive,
       description,
     
@@ -74,18 +76,7 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
     <form onSubmit={handleSubmit} className="my-form">
       <div className="login_box">
         <div className="login_view">
-          <h3 className="">Create User</h3>
-
-          <div className="margin_top">
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-control background_color"
-              style={{ backgroundColor: 'white' }}
-            />
-          </div>
+          <h3 className="margin_bottom">Create User</h3>
 
           <div className="margin_top">
             <label>Profile Picture</label>
@@ -106,19 +97,52 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
           </div>
 
           <div className="margin_top">
-            <label>Birthdate</label>
-            <DatePicker selected={birthdate} onChange={handleDateChange} dateFormat="yyyy-MM-dd" />
+            <label>Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="form-control background_color"
+              style={{ backgroundColor: 'white' }}
+            />
+          </div>
+
+          <div className="margin_top">
+            <label>Phone Number</label>
+            <input
+              type="number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              className="form-control background_color"
+              style={{ backgroundColor: 'white' }}
+            />
+          </div>
+
+          
+
+          <div className="margin_top">
+            <label className="margin_top" >Birthdate</label>
+            <div className="">
+            <DatePicker
+             selected={birthdate}
+             onChange={handleDateChange}
+             dateFormat="yyyy-MM-dd"
+              className="form-control background_color"
+            />
+          </div>
           </div>
 
           <div className="margin_top">
             <label>Active Status</label>
+            <div>
             <input
               type="checkbox"
               checked={isActive}
               onChange={() => setIsActive(!isActive)}
-              className="form-control background_color"
-              style={{ backgroundColor: 'white' }}
+              className="form-control background_color margin_left"
+              style={{ backgroundColor: 'white', marginLeft: '-40vh' }}
             />
+            </div>
           </div>
 
           <div className="margin_top">
