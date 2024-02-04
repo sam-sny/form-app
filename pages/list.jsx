@@ -5,6 +5,7 @@ const List = () => {
   const { getUsersList, getUsersListPage, usersList } = useContext(GlobalContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [dataFetched, setDataFetched] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     if (!dataFetched) {
@@ -24,20 +25,29 @@ const List = () => {
   };
 
   return (
-    <div>
+    <div className="users-list-container">
       <h1>Users List</h1>
-      <ul>
+      <ul className="users-list">
         {usersList.map((user) => (
-          <li key={user.id}>
-            <p>Name: {user.name}</p>
-            <p>Profile Picture: {user.profile_picture}</p>
-            <p>Birth Date: {user.birthday}</p>
-            <p>Joining Date: {user.joining_date}</p>
-            <p>Phone Number: {user.phone_number}</p>
+          <li key={user.id} className="user-item">
+            <div className="user-info">
+              <p className="user-info-item">Name: {user.name}</p>
+              <p className="user-info-item">Profile Picture: {user.profile_picture}</p>
+              <p className="user-info-item">Birth Date: {user.birthday}</p>
+              <p className="user-info-item">Joining Date: {user.joining_date}</p>
+              <p className="user-info-item">Phone Number: {user.phone_number}</p>
+              <p className="user-info-item">Description: {user.description}</p>
+            </div>
           </li>
         ))}
       </ul>
-      <button onClick={loadMoreUsers}>Load More</button>
+      {showMore && (
+        <div className="load-more-container">
+          <button onClick={loadMoreUsers} className="load-more-button">
+            Load More
+          </button>
+        </div>
+      )}
     </div>
   );
 };
