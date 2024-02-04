@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [name, setName] = useState('');
-  const [profilePicture, setProfilePicture] = useState('');
+  const [profilePicture, setProfilePicture] = useState(null);
   const [birthdate, setBirthdate] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [description, setDescription] = useState('');

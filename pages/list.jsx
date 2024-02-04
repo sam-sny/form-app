@@ -15,12 +15,17 @@ const List = () => {
   }, [getUsersList, dataFetched]);
 
   const loadMoreUsers = async () => {
+    const itemsPerPage = 10;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
     const nextPage = currentPage + 1;
     const userListPage = await getUsersListPage(nextPage);
 
     if (userListPage.length > 0) {
       setCurrentPage(nextPage);
-      getUsersList([...usersList, ...userListPage]);
+      getUsersList([...usersList, ...userListPage.slice(0, itemsPerPage)]);
+      setShowMore(userListPage.length > itemsPerPage);
     }
   };
 
@@ -53,4 +58,3 @@ const List = () => {
 };
 
 export default List;
-
