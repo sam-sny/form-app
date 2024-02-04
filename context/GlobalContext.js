@@ -106,7 +106,7 @@ const GlobalState = ({ children }) => {
             fontSize: '16px', // Adjust font size as needed
             textAlign: 'center',
           },
-        })
+        });
         history.push(`/list`);
         // Handle success here, e.g., redirect to a success page
       } else {
