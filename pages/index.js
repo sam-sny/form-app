@@ -12,7 +12,7 @@ export default function Home() {
   const [profilePicture, setProfilePicture] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [isActive, setIsActive] = useState(false);
-  const [description, setDescription] = useState('sampson');
+  const [description, setDescription] = useState('');
 
   const { createUser } = useContext(GlobalContext)
 

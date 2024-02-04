@@ -10,7 +10,7 @@ const Edit = () => {
   const [profilePicture, setProfilePicture] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [isActive, setIsActive] = useState(false);
-  const [description, setDescription] = useState('sampson');
+  const [description, setDescription] = useState('');
 
   const { editUser, getUserData } = useContext(GlobalContext);
   const router = useRouter();
