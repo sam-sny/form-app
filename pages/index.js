@@ -12,8 +12,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(null);
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [profilePicture, setProfilePicture] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [description, setDescription] = useState('');
@@ -22,7 +22,6 @@ export default function Home() {
 
   const handleDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
-  
     if (file) {
       // Prepend the desired path to the filename
       const imagePath = `https://tasks.vitasoftsolutions.com/media/profile_pictures/${file.name}`;
@@ -44,19 +43,16 @@ export default function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Do something with the form data (e.g., send to the server)
 
     const year = birthdate.getFullYear();
-    const month = birthdate.getMonth() + 1; // Months are zero-based, so add 1
+    const month = birthdate.getMonth() + 1;
     const day = birthdate.getDate();
-
-// Format the date as "yyyy-MM-dd"
-const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+    const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
 
 
     createUser({
       name: name,
-      phone_number: "09877656",
+      phone_number: phoneNumber,
       description: description,
       birthdate: formattedDate,
       active_status: isActive,
@@ -66,24 +62,23 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
       name,
       formattedDate,
       phoneNumber,
-      active_status: isActive,
+      isActive,
       description,
-    
     });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="my-form">
+    <form onSubmit={handleSubmit} encType="multipart/form-data" className="my-form">
       <div className="login_box">
         <div className="login_view">
           <h3 className="margin_bottom">Create User</h3>
 
           <div className="margin_top">
             <label>Profile Picture</label>
-            <Dropzone onDrop={handleDrop} accept={{ mimeType: 'image/*' }}>
+            <Dropzone onDrop={handleDrop} accept={['image/*']}>
               {({ getRootProps, getInputProps }) => (
                 <div className="dropzone" {...getRootProps()}>
-                  <input {...getInputProps()} />
+                  <input {...getInputProps()} type="file"/>
                   <div className="profile-picture-container">
                   {profilePicture ? (
                     <img src={profilePicture} alt="Profile" />
@@ -110,7 +105,7 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
           <div className="margin_top">
             <label>Phone Number</label>
             <input
-              type="number"
+              type="text"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               className="form-control background_color"
@@ -127,7 +122,8 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
              selected={birthdate}
              onChange={handleDateChange}
              dateFormat="yyyy-MM-dd"
-              className="form-control background_color"
+             className="form-control background_color"
+             wrapperClassName="datePicker"
             />
           </div>
           </div>
@@ -140,7 +136,7 @@ const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? 
               checked={isActive}
               onChange={() => setIsActive(!isActive)}
               className="form-control background_color margin_left"
-              style={{ backgroundColor: 'white', marginLeft: '-40vh' }}
+              style={{ backgroundColor: 'white'}}
             />
             </div>
           </div>

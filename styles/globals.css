@@ -233,9 +233,16 @@ input[type="password"] {
   width: 15.5vw;
 }
 
-
+.datePicker {
+  width: 100%;
+}
 
 @media (min-width: 768px) {
+
+  .datePicker {
+    width: 100%;
+  }
+
   .login_box {
     width: 100vw;
     height: 100vh;

@@ -8,7 +8,7 @@ import { GlobalContext } from '@/context/GlobalContext';
 
 const Edit = () => {
   const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [isActive, setIsActive] = useState(false);
@@ -25,12 +25,10 @@ const Edit = () => {
           const userData = await getUserData(id);
           setName(userData.name || '');
           setProfilePicture(userData.profile_picture || '');
-          
-          // Check if userData.birthdate is a valid date string before creating a Date object
           setBirthdate(userData.birthdate ? new Date(userData.birthdate) : '');
-
+          setPhoneNumber(userData.phone_number || '');
           setIsActive(userData.active_status || false);
-          setDescription(userData.description || 'sampson');
+          setDescription(userData.description || '');
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -42,9 +40,11 @@ const Edit = () => {
 
   const handleDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
-
     if (file) {
+      // Prepend the desired path to the filename
       const imagePath = `https://tasks.vitasoftsolutions.com/media/profile_pictures/${file.name}`;
+      
+      // Set the profilePicture state to the complete URL
       setProfilePicture(imagePath);
     }
   };
@@ -67,9 +67,9 @@ const Edit = () => {
     const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
 
     editUser({
-      name,
-      phone_number: "09877656",
-      description,
+      name: name,
+      phone_number: phoneNumber,
+      description: description,
       birthdate: formattedDate,
       active_status: isActive,
     }, id);
@@ -77,24 +77,24 @@ const Edit = () => {
     console.log({
       name,
       formattedDate,
-      phone_number: '',
-      active_status: isActive,
+      phoneNumber,
+      isActive,
       description,
     });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="my-form">
+    <form onSubmit={handleSubmit} encType="multipart/form-data" className="my-form">
       <div className="login_box">
         <div className="login_view">
           <h3 className="margin_bottom">Edit User</h3>
 
           <div className="margin_top">
             <label>Profile Picture</label>
-            <Dropzone onDrop={handleDrop} accept={{ mimeType: 'image/*' }}>
+            <Dropzone onDrop={handleDrop} accept={['image/*']}>
               {({ getRootProps, getInputProps }) => (
                 <div className="dropzone" {...getRootProps()}>
-                  <input {...getInputProps()} />
+                  <input {...getInputProps()} type="file"/>
                   <div className="profile-picture-container">
                   {profilePicture ? (
                     <img src={profilePicture} alt="Profile" />
@@ -121,7 +121,7 @@ const Edit = () => {
           <div className="margin_top">
             <label>Phone Number</label>
             <input
-              type="number"
+              type="text"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               className="form-control background_color"
@@ -138,20 +138,23 @@ const Edit = () => {
              selected={birthdate}
              onChange={handleDateChange}
              dateFormat="yyyy-MM-dd"
-              className="date-picker-input"
+             className="form-control background_color"
+             wrapperClassName="datePicker"
             />
           </div>
           </div>
 
           <div className="margin_top">
             <label>Active Status</label>
+            <div>
             <input
               type="checkbox"
               checked={isActive}
               onChange={() => setIsActive(!isActive)}
               className="form-control background_color margin_left"
-              style={{ backgroundColor: 'white' }}
+              style={{ backgroundColor: 'white'}}
             />
+            </div>
           </div>
 
           <div className="margin_top">
