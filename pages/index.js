@@ -74,7 +74,7 @@ export default function Home() {
           <h3 className="margin_bottom">Create User</h3>
 
           <div className="margin_top">
-            <label>Profile Picture</label>
+            <label>Profile Picture:</label>
             <Dropzone onDrop={handleDrop} accept={['image/*']}>
               {({ getRootProps, getInputProps }) => (
                 <div className="dropzone" {...getRootProps()}>
@@ -92,7 +92,7 @@ export default function Home() {
           </div>
 
           <div className="margin_top">
-            <label>Name</label>
+            <label>Name:</label>
             <input
               type="text"
               value={name}
@@ -103,7 +103,7 @@ export default function Home() {
           </div>
 
           <div className="margin_top">
-            <label>Phone Number</label>
+            <label>Phone Number:</label>
             <input
               type="text"
               value={phoneNumber}
@@ -116,7 +116,7 @@ export default function Home() {
           
 
           <div className="margin_top">
-            <label className="margin_top" >Birthdate</label>
+            <label className="margin_top" >Birthdate:</label>
             <div className="">
             <DatePicker
              selected={birthdate}
@@ -129,7 +129,7 @@ export default function Home() {
           </div>
 
           <div className="margin_top">
-            <label>Active Status</label>
+            <label>Active Status:</label>
             <div style={{ width: '100%'}}>
             <input
               type="checkbox"
@@ -142,7 +142,7 @@ export default function Home() {
           </div>
 
           <div className="margin_top">
-            <label>Description</label>
+            <label>Description:</label>
             <CKEditor content={description} events={{ change: handleDescriptionChange }} />
           </div>
 

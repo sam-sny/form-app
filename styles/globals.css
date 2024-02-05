@@ -120,7 +120,7 @@ a {
 
 .user-item {
   border: 1px solid #ddd;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -128,11 +128,11 @@ a {
 
 .user-info {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .user-info-item {
-  width: 50%;
+  width: 100%;
   padding: 5px;
   word-wrap: break-word;
 }
@@ -176,10 +176,16 @@ a {
   padding: 1vh;
   background-color: #6699CC;
   border: none;
+  color: white;
 }
 
 .margin_top {
   margin-top: 2vh;
+}
+
+.margin_bottom {
+  margin-top: 0vh;
+  margin-bottom: 3.5vh;
 }
 
 
@@ -231,6 +237,7 @@ input[type="password"] {
   color: white;
   background-color: red;
   width: 15.5vw;
+  border-radius: 5px;
 }
 
 .datePicker {
@@ -259,7 +266,7 @@ input[type="password"] {
   .login_view {
     width: 40vw;
     height: auto;
-    margin: 3.0vh auto;
+    margin: 2.0vh auto;
     background-color: white;
     padding: 2vw;
   }
@@ -269,6 +276,7 @@ input[type="password"] {
     padding: 1vh;
     background-color: #6699CC;
     border: none;
+    color: white;
   }
 
   .margin_top {
@@ -276,7 +284,7 @@ input[type="password"] {
   }
 
   .margin_bottom {
-    margin-top: -2vh;
+    margin-top: 0vh;
     margin-bottom: 3.5vh;
   }
 
@@ -326,5 +334,6 @@ input[type="password"] {
     color: white;
     background-color: red;
     width: 10vw;
+    border-radius: 5px;
   }
 }

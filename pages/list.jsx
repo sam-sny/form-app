@@ -45,8 +45,8 @@ const List = () => {
         <h1 className='margin_bottom'>Users List</h1>
         <ul className="users-list">
           {usersList.map((user) => (
-            <li key={user.id} className="user-item" >
-              <div className="user-info" onClick={() => handleUserClick(user.id)}>
+            <li key={user.id} className="user-item" style={{position: 'relative'}}>
+              <div className="user-info" onClick={() => handleUserClick(user.id)} >
                 <p className="user-info-item">Name: {user.name}</p>
                 <p className="user-info-item">Description: {user.description}</p>
                 <p className="user-info-item">Birth Date: {user.birthdate}</p>
@@ -54,7 +54,8 @@ const List = () => {
                 <p className="user-info-item">Phone Number: {user.phone_number}</p>
                 <p className="user-info-item">Profile Picture: {user.profile_picture}</p> 
               </div>
-              <button onClick={() => deleteUser(user.id)} className='red-delete-button'>Delete</button>
+              <button onClick={() => deleteUser(user.id)} className='red-delete-button' 
+              style={{position: 'absolute', bottom: '-15%', left: '0%'}}>Delete</button>
             </li>    
           ))}
         </ul>

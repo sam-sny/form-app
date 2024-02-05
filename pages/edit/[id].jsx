@@ -90,7 +90,7 @@ const Edit = () => {
           <h3 className="margin_bottom">Edit User</h3>
 
           <div className="margin_top">
-            <label>Profile Picture</label>
+            <label>Profile Picture:</label>
             <Dropzone onDrop={handleDrop} accept={['image/*']}>
               {({ getRootProps, getInputProps }) => (
                 <div className="dropzone" {...getRootProps()}>
@@ -108,7 +108,7 @@ const Edit = () => {
           </div>
 
           <div className="margin_top">
-            <label>Name</label>
+            <label>Name:</label>
             <input
               type="text"
               value={name}
@@ -119,7 +119,7 @@ const Edit = () => {
           </div>
 
           <div className="margin_top">
-            <label>Phone Number</label>
+            <label>Phone Number:</label>
             <input
               type="text"
               value={phoneNumber}
@@ -132,7 +132,7 @@ const Edit = () => {
           
 
           <div className="margin_top">
-            <label>Birthdate</label>
+            <label>Birthdate:</label>
             <div className="">
             <DatePicker
              selected={birthdate}
@@ -145,20 +145,20 @@ const Edit = () => {
           </div>
 
           <div className="margin_top">
-            <label>Active Status</label>
+            <label>Active Status:</label>
             <div>
             <input
               type="checkbox"
               checked={isActive}
               onChange={() => setIsActive(!isActive)}
               className="form-control background_color margin_left"
-              style={{ backgroundColor: 'white'}}
+              style={{ backgroundColor: 'white', marginLeft: '-48.5%'}}
             />
             </div>
           </div>
 
           <div className="margin_top">
-            <label>Description</label>
+            <label>Description:</label>
             <CKEditor content={description} events={{ change: handleDescriptionChange }} />
           </div>
 
