@@ -210,8 +210,8 @@ input[type="password"] {
   cursor: pointer;
   border-radius: 50%;
   overflow: hidden;
-  width: 35vw;
-  height: 15vh;
+  width: 150px;
+  height: 150px;
 }
 
 .dropzone img {
@@ -237,6 +237,7 @@ input[type="password"] {
   width: 100%;
 }
 
+
 @media (min-width: 768px) {
 
   .datePicker {
@@ -258,7 +259,7 @@ input[type="password"] {
   .login_view {
     width: 40vw;
     height: auto;
-    margin: 5.0vh auto;
+    margin: 3.0vh auto;
     background-color: white;
     padding: 2vw;
   }
@@ -272,10 +273,6 @@ input[type="password"] {
 
   .margin_top {
     margin-top: 1vh;
-  }
-
-  .margin_left {
-    margin-left: -40vh;
   }
 
   .margin_bottom {
@@ -309,8 +306,8 @@ input[type="password"] {
     cursor: pointer;
     border-radius: 50%;
     overflow: hidden;
-    width: 10vw;
-    height: 20vh;
+    width: 150px;
+    height: 150px;
   }
 
   .dropzone img {

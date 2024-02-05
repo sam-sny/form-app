@@ -130,13 +130,13 @@ export default function Home() {
 
           <div className="margin_top">
             <label>Active Status</label>
-            <div>
+            <div style={{ width: '100%'}}>
             <input
               type="checkbox"
               checked={isActive}
               onChange={() => setIsActive(!isActive)}
               className="form-control background_color margin_left"
-              style={{ backgroundColor: 'white'}}
+              style={{ backgroundColor: 'white', marginLeft: '-48.5%'}}
             />
             </div>
           </div>
